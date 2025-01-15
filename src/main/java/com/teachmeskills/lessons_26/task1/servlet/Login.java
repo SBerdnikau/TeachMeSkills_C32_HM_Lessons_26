@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
         if (isValidUser){
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
-            req.getRequestDispatcher("/page/todo-list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/page/todolist.jsp").forward(req,resp);
         }else {
             resp.sendRedirect("/login.html?error=true");
         }
@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
         if (username == null){
             req.getRequestDispatcher("/login.html").forward(req,resp);
         }else {
-            req.getRequestDispatcher("/page/todo-list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/page/todolist.jsp").forward(req,resp);
         }
     }
 }

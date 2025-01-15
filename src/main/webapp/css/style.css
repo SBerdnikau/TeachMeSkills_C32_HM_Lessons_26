@@ -115,3 +115,26 @@ footer .author {
     margin-top: 10px;
     display: none;
 }
+
+.error-header{
+    color: #F08080;
+    font-size: 8em;
+    text-align: center;
+    font-style: italic;
+    margin-top: 6%;
+    font-family: FreeMono, monospace;
+}
+.error-text{
+    color: #333333;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 6%;
+    font-family: FreeMono, monospace;
+}
+.error-link{
+    display: block;
+    color: #F08080;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 2%;
+}
