@@ -10,23 +10,24 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/registration")
+public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=utf-8");
+        resp.setContentType("text/html");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmPassword");
 
-       String username = req.getParameter("username");
-       String password = req.getParameter("password");
+        boolean isAddUser = UserRepository.addUser(username, password, confirmPassword);
 
-        boolean isValidUser = UserRepository.isValidLogin(username, password);
-
-        if (isValidUser){
+        if (isAddUser) {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
-            req.getRequestDispatcher("/page/todo-list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/page/todo-list.jsp").forward(req, resp);
         }else {
-            resp.sendRedirect("/login.html?error=true");
+            req.setAttribute("error",true);
+            resp.sendRedirect("/registration.html?error=true");
         }
     }
 
@@ -34,11 +35,10 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
-
-        if (username == null){
-            req.getRequestDispatcher("/login.html").forward(req,resp);
+        if (username == null) {
+            req.getRequestDispatcher("/registration.html").forward(req, resp);
         }else {
-            req.getRequestDispatcher("/page/todo-list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/page/todo-list.jsp").forward(req, resp);
         }
     }
 }

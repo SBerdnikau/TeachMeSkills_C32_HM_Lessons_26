@@ -82,6 +82,21 @@ body {
     background-color: #45a049;
 }
 
+.header{
+    display: flex;
+    justify-content: space-between;
+    background: #333333;
+    font-size: 13px;
+    padding: 8px;
+    font-weight: 100;
+    color: #f4f4f4;
+    font-family: sans-serif;
+}
+
+.red-span{
+    color: #F08080;
+}
+
 footer {
     align-self: end;
     padding: 12px;
@@ -92,4 +107,11 @@ footer {
 
 footer .author {
     font-size: 12px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
 }
